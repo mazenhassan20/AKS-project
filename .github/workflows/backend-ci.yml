@@ -4,10 +4,13 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'backend/**' # 👈 السحر هنا: مش هيشتغل غير لو لمست فولدر الباك إند
+      - 'backend/**'
+
+permissions:
+  contents: write
 
 jobs:
-  build-backend:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Check out the repo
@@ -20,10 +23,26 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
 
-    - name: Build and Push Backend
+    - name: Build and Push Docker Image
       uses: docker/build-push-action@v4
       with:
         context: ./backend
         file: ./backend/Dockerfile
         push: true
-        tags: ${{ secrets.ACR_SERVER }}/backend:latest
+        tags: |
+          ${{ secrets.ACR_SERVER }}/backend:${{ github.sha }}
+          ${{ secrets.ACR_SERVER }}/backend:latest
+
+    - name: Update Kubernetes Manifest
+      run: |
+        cd infra/k8s
+        sed -i "s|image: .*|image: ${{ secrets.ACR_SERVER }}/backend:${{ github.sha }}|g" backend.yaml
+        cat backend.yaml
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        git add infra/k8s/backend.yaml
+        git commit -m "Update backend image tag to ${{ github.sha }}"
+        git push

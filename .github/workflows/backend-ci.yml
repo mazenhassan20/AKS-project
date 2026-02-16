@@ -43,7 +43,9 @@ jobs:
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
+        git stash
         git pull origin main --rebase
+        git stash pop || echo "No changes to pop"
         git add infra/k8s/backend.yaml
-        git commit -m "Update backend image tag to ${{ github.sha }}"
-        git push
+        git commit -m "Update backend image tag to ${{ github.sha }}" || echo "No changes to commit"
+        git push origin main

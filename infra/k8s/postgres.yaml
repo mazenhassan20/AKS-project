@@ -7,7 +7,7 @@ spec:
   - port: 5432
   selector:
     app: postgres
-  clusterIP: None # مش محتاجين IP خارجي، اتصال داخلي بس
+  clusterIP: None 
 ---
 apiVersion: apps/v1
 kind: Deployment

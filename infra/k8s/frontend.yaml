@@ -9,7 +9,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer # عشان ناخد Public IP نفتح منه الموقع
+  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment

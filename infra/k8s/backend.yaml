@@ -30,7 +30,7 @@ spec:
     spec:
       initContainers:
       - name: init-db
-        image: mazenelsayad1234.azurecr.io/backend:47eb4f79afcaa7fcb122794e4f4ee20d44c04cb8
+        image: mazenelsayad1234.azurecr.io/backend:d8d715dd276e94d7a74d66c62b055d88b7bdd29f
         command: ['sh', '-c', 'npx prisma db push']
         env:
         - name: DATABASE_URL
@@ -38,7 +38,7 @@ spec:
 
       containers:
       - name: backend
-        image: mazenelsayad1234.azurecr.io/backend:47eb4f79afcaa7fcb122794e4f4ee20d44c04cb8
+        image: mazenelsayad1234.azurecr.io/backend:d8d715dd276e94d7a74d66c62b055d88b7bdd29f
         ports:
         - containerPort: 3000
         env:

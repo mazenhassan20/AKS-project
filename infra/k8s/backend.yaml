@@ -28,11 +28,9 @@ spec:
       labels:
         app: backend
     spec:
-      # 👇 هنا الـ InitContainer اللي بيبني الجداول
       initContainers:
       - name: init-db
-        # ⚠️ استبدل PUT_YOUR_ACR_NAME_HERE باسم الـ ACR بتاعك
-        image: mazenelsayad1234.io/backend:latest
+        image: mazenelsayad1234.io/backend:v1
         command: ['sh', '-c', 'npx prisma db push']
         env:
         - name: DATABASE_URL
@@ -43,7 +41,7 @@ spec:
       containers:
       - name: backend
         # ⚠️ استبدل PUT_YOUR_ACR_NAME_HERE باسم الـ ACR بتاعك
-        image: mazenelsayad1234.azurecr.io/backend:latest
+        image: mazenelsayad1234.azurecr.io/backend:v1
         ports:
         - containerPort: 3000
         env:

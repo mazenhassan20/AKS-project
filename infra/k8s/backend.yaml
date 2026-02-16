@@ -34,13 +34,10 @@ spec:
         command: ['sh', '-c', 'npx prisma db push']
         env:
         - name: DATABASE_URL
-          # وحدتلك اليوزر والباسورد يبقوا زي اللي تحت (myuser)
           value: "postgresql://myuser:mypassword@postgres:5432/mydb?schema=public"
 
-      # 👇 هنا الكونتينر الأساسي بتاع الموقع
       containers:
       - name: backend
-        # ⚠️ استبدل PUT_YOUR_ACR_NAME_HERE باسم الـ ACR بتاعك
         image: mazenelsayad1234.azurecr.io/backend:v1
         ports:
         - containerPort: 3000

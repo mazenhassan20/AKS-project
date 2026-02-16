@@ -30,7 +30,7 @@ spec:
     spec:
       initContainers:
       - name: init-db
-        image: mazenelsayad1234.io/backend:v1
+        image: mazenelsayad1234.azurecr.io/backend:v1
         command: ['sh', '-c', 'npx prisma db push']
         env:
         - name: DATABASE_URL

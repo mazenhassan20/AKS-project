@@ -4,7 +4,7 @@ import _superagent from 'superagent';
 const superagent = superagentPromise(_superagent, global.Promise);
 
 // وجهناه للسيرفر بتاعنا
-const API_ROOT = 'http://68.210.113.196/api';
+const API_ROOT = 'http://68.210.80.218/api';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;

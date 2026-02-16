@@ -1,7 +1,6 @@
 services:
-  # خدمة الـ Backend
   api:
-    build: ../node-express-realworld-example-app # تأكد من المسار الصحيح لفولدر الباكيند
+    build: ../node-express-realworld-example-app 
     ports:
       - "3000:3000"
     environment:
@@ -9,8 +8,6 @@ services:
       - NODE_ENV=development
     depends_on:
       - db
-
-  # خدمة قاعدة البيانات
   db:
     image: postgres:15-alpine
     environment:
@@ -20,13 +17,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  # خدمة الـ Frontend (الجديدة)
   frontend:
-    build: ../react-redux-realworld-example-app # المسار لفولدر الفرونت إيند
-    ports:
-      - "4100:80" # هنفتح الموقع على بورت 4100
+    build: ../react-redux-realworld-example-app
+      - "4100:80" 
     environment:
-      - REACT_APP_BACKEND_URL=http://localhost:3000/api # عشان الفرونت يعرف يكلم الباك
+      - REACT_APP_BACKEND_URL=http://localhost:3000/api 
     depends_on:
       - api
 

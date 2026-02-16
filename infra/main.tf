@@ -1,10 +1,17 @@
-# تعريف مزود الخدمة (Azure)
 terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~> 3.0"
     }
+  }
+
+  # 👇👇 ده الجزء الجديد اللي هينقل الملف لأزور 👇👇
+  backend "azurerm" {
+    resource_group_name  = "tfstate-rg"        # اسم الجروب الخاص بالـ State
+    storage_account_name = "mazentfstate9988"  # اسم الستورج اللي عملناه (تأكد إنه نفس الاسم اللي عملته)
+    container_name       = "tfstate"           # اسم الحاوية
+    key                  = "terraform.tfstate" # اسم الملف
   }
 }
 
@@ -32,8 +39,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name       = "default"
-    node_count = 1               # نود واحدة كفاية للتجربة والتوفير
-    vm_size    = "Standard_B2s_v2"
+    node_count = 1                # نود واحدة كفاية للتجربة والتوفير
+    vm_size    = "Standard_B2s_v2" # تأكد إن المقاس ده متاح في region النمسا
   }
 
   identity {

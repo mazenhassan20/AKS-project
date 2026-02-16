@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: mazenelsayad1234.azurecr.io/frontend:b1f190612a47495341769368c3135bde206f6493
+        image: mazenelsayad1234.azurecr.io/frontend:2fbcc5d77ecd9200808a22603bf6a44c1f3d77e5
         ports:
         - containerPort: 80

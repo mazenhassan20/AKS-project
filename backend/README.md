@@ -54,7 +54,7 @@ Run the following command to run the project:
 npx nx serve api
 ```
 
-### Seed the database
+### Seed the databasee
 
 The project includes a seed script to populate the database:
 

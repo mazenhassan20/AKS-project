@@ -37,3 +37,13 @@ spec:
           value: "postgresql://myuser:mypassword@postgres:5432/mydb?schema=public"
         - name: NODE_ENV
           value: "production"
+# ... (جزء الـ containers الأصلي بتاعك) ...
+
+      # 👇 ضيف الجزء ده قبله (في نفس مستوى containers)
+      initContainers:
+      - name: init-db
+        image: mazenelsayad1234.azurecr.io/backend:latest # نفس صورة الباك إند
+        command: ['sh', '-c', 'npx prisma db push']      # الأمر اللي كنت بتكتبه يدوي
+        env:
+        - name: DATABASE_URL # لازم تديله نفس إعدادات الداتا بيز
+          value: "postgresql://user:mypassword@postgres:5432/mydb?schema=public"

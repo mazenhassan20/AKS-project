@@ -34,6 +34,8 @@ spec:
           value: "mypassword"
         - name: POSTGRES_DB
           value: "mydb"
+        - name: PGDATA
+          value: "/var/lib/postgresql/data/pgdata"
         ports:
         - containerPort: 5432
           name: postgres

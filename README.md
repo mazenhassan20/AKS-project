@@ -68,14 +68,21 @@ Transitioned from multiple costly LoadBalancer IPs to a consolidated, profession
 * **Path-based Routing**: Configured the Ingress to intelligently route traffic based on URL paths (`/` for UI, `/api` for the Backend API) under a single Public IP, optimizing Azure quota usage.
 <img width="1061" height="77" alt="Screenshot 2026-02-17 061845" src="https://github.com/user-attachments/assets/c5120974-7250-4066-bcdb-b727986d4e9f" />
 
+### 6. Automated CI Pipeline (GitHub Actions)
+The heart of the automation, ensuring every code change is validated and built:
+* **Workflow Automation**: Defined `.github/workflows` to trigger on every push to the `main` branch.
+* **Build & Push**: Automated the process of building Docker images for both Frontend and Backend, and pushing them to **Azure Container Registry (ACR)** using GitHub secrets for authentication.
+* **Consistency**: Guaranteed that the latest version of the application is always available in the registry for deployment.
+<img width="1095" height="920" alt="Screenshot 2026-02-17 064602" src="https://github.com/user-attachments/assets/75fa229c-efa4-4519-bbda-ec95a9a43c83" />
 
-### 6. GitOps & Automated CI/CD
+
+### 7. GitOps & Automated CD
 Eliminating manual intervention in the deployment process:
 * **GitHub Actions**: Configured a CI pipeline that triggers on code pushes to build Docker images and update ACR.
 * **ArgoCD (GitOps)**: Implemented the GitOps pattern by syncing the AKS cluster state with this repository. ArgoCD provides automated **Self-Healing**, ensuring the live environment never drifts from the defined configuration in Git.
 <img width="1441" height="973" alt="Screenshot 2026-02-17 061915" src="https://github.com/user-attachments/assets/c7dfd6f4-a899-4370-bade-b352daa41188" />
 
-### 7. Observability & Monitoring (The SRE Layer)
+### 8. Observability & Monitoring (The SRE Layer)
 Achieved full transparency into the cluster's health and performance:
 * **Prometheus**: Automated scraping of system and application metrics.
 * **Grafana**: Built visualization dashboards for real-time monitoring of CPU, RAM, and Network utilization.
@@ -84,7 +91,19 @@ Achieved full transparency into the cluster's health and performance:
 <img width="1920" height="1080" alt="Screenshot 2026-02-17 060657" src="https://github.com/user-attachments/assets/66f6b565-8837-44c2-b1ae-64a9fb0c5f85" /><img width="1920" height="1080" alt="Screenshot 2026-02-17 060751" src="https://github.com/user-attachments/assets/f6cd8a30-5e24-487c-9296-4e5c7eed421c" />
 
 ---
+## 🛠️ Deployment Operations (Imperative Commands)
 
+While most of the infrastructure is declarative, some initial setup required Helm commands:
+
+```bash
+# 1. Setup Nginx Ingress
+helm repo add ingress-nginx [https://kubernetes.github.io/ingress-nginx](https://kubernetes.github.io/ingress-nginx)
+helm install ingress-nginx ingress-nginx/ingress-nginx --set controller.service.externalTrafficPolicy=Local
+
+# 2. Setup Monitoring (Prometheus & Grafana)
+helm repo add prometheus-community [https://prometheus-community.github.io/helm-charts](https://prometheus-community.github.io/helm-charts)
+helm install monitor prometheus-community/kube-prometheus-stack -n monitoring --create-namespace
+```
 ## 🧠 Challenges & Troubleshooting (The Engineering Reality)
 
 * **The Ingress 404 Trap**: 

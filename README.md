@@ -123,5 +123,3 @@ helm install monitor prometheus-community/kube-prometheus-stack -n monitoring --
 
 ## 👤 Author
 **Mazen Hassan**
-* **Education**: Communications & Electronics Engineering Student.
-* **Current Focus**: Cloud Infrastructure, DevOps

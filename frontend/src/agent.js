@@ -4,7 +4,7 @@ import _superagent from 'superagent';
 const superagent = superagentPromise(_superagent, global.Promise);
 
 const API_ROOT = 'http://68.210.80.218/api';
-
+// Updated API IP for Ingress
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
 

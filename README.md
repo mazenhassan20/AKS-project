@@ -50,6 +50,11 @@ To eliminate manual configuration and ensure reproducibility, the entire Azure e
 * **Security & Scalability**: Configured cluster identities and registry access permissions (RBAC) through Terraform variables and modules.
 * **State Management**: Maintained a consistent infrastructure state, allowing for rapid environment teardown and reconstruction without manual intervention.
 
+To ensure the infrastructure is reproducible and secure, we used **Terraform** with a **Remote Backend**:
+* **Remote State Management**: Instead of storing the `terraform.tfstate` locally, it is hosted in an **Azure Blob Storage Container**. 
+* **Benefits**: This prevents state loss, enables team collaboration, and ensures a "Single Source of Truth" for the infrastructure.
+* **Resources**: Provisioned the AKS cluster, ACR, and the necessary networking components using modular Terraform files.
+
 ### 3. Kubernetes Orchestration & Manifests
 The core application logic was deployed using declarative Kubernetes YAML manifests:
 * **Deployments**: Configured high availability through managed replicas for both Frontend and Backend services.

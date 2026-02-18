@@ -124,6 +124,7 @@ helm install monitor prometheus-community/kube-prometheus-stack -n monitoring --
     * *Problem*: Backend services would crash if they attempted to connect before the Postgres Pod was fully ready.
     * *Solution*: Integrated an **Init Container** to wait for the database port to be open before the main application starts.
 
+**"In this phase, environment variables are managed directly in manifests for rapid development. Future iterations will migrate sensitive data to Kubernetes Secrets and Azure Key Vault for enhanced security."**
 ---
 
 ## 👤 Author

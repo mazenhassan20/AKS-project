@@ -54,6 +54,7 @@ To ensure the infrastructure is reproducible and secure, we used **Terraform** w
 * **Remote State Management**: Instead of storing the `terraform.tfstate` locally, it is hosted in an **Azure Blob Storage Container**. 
 * **Benefits**: This prevents state loss, enables team collaboration, and ensures a "Single Source of Truth" for the infrastructure.
 * **Resources**: Provisioned the AKS cluster, ACR, and the necessary networking components using modular Terraform files.
+<img width="1920" height="1080" alt="Screenshot 2026-02-18 132829" src="https://github.com/user-attachments/assets/8750156e-9b42-4ebb-9f09-13eb1b6abcd9" />
 
 ### 3. Kubernetes Orchestration & Manifests
 The core application logic was deployed using declarative Kubernetes YAML manifests:

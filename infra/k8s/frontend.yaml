@@ -30,3 +30,10 @@ spec:
         image: mazenelsayad1234.azurecr.io/frontend:65da23f6c2d35d8812bd63adafda30f140a8a934
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"     
+            memory: "1286Mi"  
+          limits:
+            cpu: "500m"      
+            memory: "512Mi"

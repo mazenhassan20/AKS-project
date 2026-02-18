@@ -41,6 +41,13 @@ spec:
         image: mazenelsayad1234.azurecr.io/backend:d8d715dd276e94d7a74d66c62b055d88b7bdd29f
         ports:
         - containerPort: 3000
+        resources:
+          requests:
+            cpu: "200m"    
+            memory: "256Mi" 
+          limits:
+            cpu: "500m"      
+            memory: "512Mi"
         env:
         - name: DATABASE_URL
           value: "postgresql://myuser:mypassword@postgres:5432/mydb?schema=public"

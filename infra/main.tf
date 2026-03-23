@@ -55,7 +55,6 @@ resource "azurerm_role_assignment" "aks_acr_pull" {
   skip_service_principal_aad_check = true
 }
 
-# طباعة اسم الكلاستر والداتا بتاعته بعد ما يخلص
 output "aks_cluster_name" {
   value = azurerm_kubernetes_cluster.aks.name
 }
